@@ -1,7 +1,7 @@
 import createStore from './createStore';
-import counterReducer from './counterReducer';
-import inputReducer from './inputReducer';
-import rootReducer from './rootReducer';
+import counterReducer from './reducers/counterReducer';
+import inputReducer from './reducers/inputReducer';
+import rootReducer from './reducers/rootReducer';
 type Store = {
   getState: () => void;
   dispatch: (action: object) => void;
@@ -12,6 +12,4 @@ let store: any = createStore(
   rootReducer({counter: counterReducer, input: inputReducer})
 );
 
-console.log(store.getState());
-console.log(store.dispatch({type: 'INCREMENT'}));
-console.log(store.getState());
+export default store;
