@@ -1,5 +1,9 @@
 import * as React from 'react';
-import {ReduxProvider, ReduxContextInterface} from './reduxContext';
+import {
+  ReduxContext,
+  ReduxProvider,
+  ReduxContextInterface
+} from './reduxContext';
 
 type Props = {
   store: ReduxContextInterface;
@@ -11,4 +15,28 @@ function Provider(props: Props) {
   return <ReduxProvider value={store}>{children}</ReduxProvider>;
 }
 
-export {Provider};
+function connect(mapStateToProps: Function, mapDispatchToProps: Function) {
+  return (Component) => {
+    class EnhancedComponent extends React.Component<any> {
+      componentDidMount() {
+        let store = this.context;
+        store.subscribe(this._handleUpdate);
+      }
+
+      _handleUpdate = () => {
+        this.forceUpdate();
+      };
+
+      render() {
+        let store = this.context;
+        let deriviedState = mapStateToProps(store.getState());
+        let deriviedDispatch = mapDispatchToProps(store.dispatch);
+        return <Component {...deriviedState} {...deriviedDispatch} />;
+      }
+    }
+    EnhancedComponent.contextType = ReduxContext;
+    return EnhancedComponent;
+  };
+}
+
+export {Provider, connect};
