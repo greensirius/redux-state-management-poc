@@ -1,14 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import store from './lib/store';
-import Counter from './scenes/Counter';
-import Card from './components/Card';
-import CardContent from './components/CardContent';
+import CounterContainer from './scenes/containers/CounterContainer';
+import {Provider} from './context/Redux';
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Card render={(data) => <CardContent data={data} />} />
-    </View>
+    <Provider store={store}>
+      <View style={styles.container}>
+        <CounterContainer />
+      </View>
+    </Provider>
   );
 }
 

@@ -18,11 +18,11 @@ class Counter extends React.Component<any, any> {
     let text = this.props.store.getState().counter.counter;
 
     return (
-      <View>
-        <Text>{text}</Text>
+      <View style={{alignItems: 'center', justifyContent: 'center'}}>
+        <Text style={{fontSize: 40}}>{text}</Text>
         <TouchableOpacity
           onPress={this._incrementHandle}
-          style={{padding: 10, backgroundColor: '#009', borderRadius: 5}}
+          style={{padding: 10, backgroundColor: '#DEF', borderRadius: 5}}
         >
           <Text>Increment</Text>
         </TouchableOpacity>
