@@ -31,6 +31,7 @@ function connect(mapStateToProps: Function, mapDispatchToProps: Function) {
         let store = this.context;
         let deriviedState = mapStateToProps(store.getState());
         let deriviedDispatch = mapDispatchToProps(store.dispatch);
+        console.log('>>>>: ', deriviedDispatch);
         return <Component {...deriviedState} {...deriviedDispatch} />;
       }
     }

@@ -25,5 +25,4 @@ class CounterContainer extends React.Component<any> {
   }
 }
 CounterContainer.contextType = ReduxContext;
-
 export default CounterContainer;
